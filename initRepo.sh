@@ -11,9 +11,6 @@ else
    clean=$2
 fi
 
-echo "Clean = $clean"
-echo "Repo  = $repo"
-
 if [ -z $repo ] ; then
    echo "You need to specify the repository foler."
    echo "Usage: "
@@ -29,14 +26,22 @@ fi
 if [ -d $repo/.git ] ; then
    echo "There's a repository present on $repo."
 
+   if [ ! -f $repo/.gitignore ] ; then
+      echo "There's no .gitignore file present. Proceeding to add and commit changes..."
+      cp gitignore.sample $repo/.gitignore
+      cd $repo
+      git add .gitignore
+      git commit -m "Add .gitignore for Unity project files."
+      git status
+   fi
+
    if [[ "$clean" == "-clean" ]] ; then
       echo "Clean option specified -- cleaning the repository..."
       cd $repo
       git clean -Xfd
-      exit 0
-   else
-      exit 3
    fi
+
+   exit 0
 fi 
 
 if [ -f $repo/.gitignore ] ; then
