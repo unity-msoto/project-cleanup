@@ -2,7 +2,7 @@
 
 ## Description
 
-### A simple script for setting up a repository for your unity project that will let you:
+**A simple script for setting up a repository for your unity project that will let you:**
 * Keep track of your work and do proper versioning of your project (git usual purpose).
 * Easily clean your project for archiving or transfer to another media.
 
